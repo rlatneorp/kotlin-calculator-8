@@ -7,6 +7,14 @@ fun main() {
     println("덧셈할 문자열을 입력해 주세요.")
     val choiceNum = Console.readLine()
     val noneSeparatorNum = choiceNum?.replace(";", ",")
+    println(noneSeparatorNum)
     val number = noneSeparatorNum?.split(",")
-    print(number)
+    println(number)
+    var result = 0
+    if (number != null) {
+        for (i in number) {
+            result += i.toInt()
+        }
+    }
+    print(result)
 }
