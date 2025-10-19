@@ -26,6 +26,10 @@ fun main() {
         }
     }
 
+    if (result >= 0 || number == null || number.indexOf(",") != 1) {
+        throw IllegalArgumentException()
+    }
+
     println("결과 : $result")
 }
 
