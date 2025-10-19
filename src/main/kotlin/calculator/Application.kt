@@ -1,6 +1,7 @@
 package calculator
 
 import camp.nextstep.edu.missionutils.Console
+import kotlin.collections.all
 
 fun main() {
     // TODO: 프로그램 구현
@@ -27,10 +28,11 @@ fun main() {
         }
     }
 
-    if (result <= 0 || numbers == null) {
+    if (result <= 0 || numbers == null || numbers.all{ it > 0.toString() } != true) {
         throw IllegalArgumentException()
     }
 
     println("결과 : $result")
 }
+
 
