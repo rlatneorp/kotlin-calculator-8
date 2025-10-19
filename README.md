@@ -71,7 +71,7 @@ if (numbers != null) {
 }
 ```
 
-변수 result에 컬렉션 number가 null이 아닐때 for문을 돌려 덧셈이 되도록 하였습니다.
+변수 result에 컬렉션 요소인 number가 null이 아닐때 for문을 돌려 덧셈이 되도록 하였습니다.
 
 `toIntOrNull()` 를 이용하여 null이 아닐 경우 즉, Int일때,
 
@@ -80,7 +80,7 @@ number가 String이였기 때문에 `toInt()` 를 이용하여 수로 변환해�
 ### 4. 예외 처리기
 
 ```kotlin
-if (result <= 0 || number == null) {
+if (result <= 0 || numbers == null || numbers.all{ it > 0.toString() } != true) {
     throw IllegalArgumentException()
 }
 ```
@@ -89,6 +89,8 @@ result(계산 결과) 값이 0이 아니거나 큰 양수일 때와
 
 number(입력한 숫자를 모아둔 컬렉션)이 null이 아닐때와
 
-noneSeparatorNum(구분자가 통일된 구분자인 “,”일때)의 첫번째 인덱스에 온 문자가 “,”가 아닐때
+noneSeparatorNum(구분자가 통일된 구분자인 “,”일때)의 첫번째 인덱스에 온 문자가 “,”가 아닐때,
+
+또 numbers 컬렉션에 있는 요소들이 양수로 체크를 하기 위해 `all` 을 사용하여,
 
 `throw`를 통해 `IllegalArgumentException()` 예외를 발생시켜 프로그램을 종료시켰습니다.
