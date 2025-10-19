@@ -11,22 +11,25 @@ fun main() {
     if (choiceNum.contains(";")) {
         noneSeparatorNum = choiceNum?.replace(";", ",")
     }
+
     if (choiceNum.contains("//") && choiceNum.contains("""\n""")) {
         val customStr = choiceNum[2].toString()
         noneSeparatorNum = (choiceNum.substring(5 until choiceNum.length)).replace(customStr, ",")
     }
-    println(noneSeparatorNum)
-    val number = noneSeparatorNum?.split(",")
-    println(number)
+    println("noneSeparatorNum $noneSeparatorNum")
     var result = 0
+    var numbers: List<String>? = noneSeparatorNum?.split(",")
+    println(numbers)
 
-    if (number != null && !number.contains(",")) {
-        for (i in number) {
-            result += i.toInt()
+    if (numbers != null) {
+        for (number in numbers) {
+            if (number.toIntOrNull() != null) {
+                result += number.toInt()
+            }
         }
     }
 
-    if (result >= 0 || number == null || number.indexOf(",") != 1) {
+    if (result <= 0 || numbers == null) {
         throw IllegalArgumentException()
     }
 
