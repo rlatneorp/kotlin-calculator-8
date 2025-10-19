@@ -1,5 +1,4 @@
 # kotlin-calculator-precourse
-
 # 기능 요구 사항 만들기
 
 ### 1. **입출력 요구 사항 만들기**
@@ -48,14 +47,14 @@ if (choiceNum.contains("//") && choiceNum.contains("""\n""")) {
 
 인덱스 2번째에 들어간 문자를 추출하였습니다. 
 
-그것을 `substring()`을 이용하여 커스텀 구간이 아닌 숫자들이 나오는 첫 인덱스인 5번째를 기점의 문자열에서 끝까지,
+그것을 `substring()`을 이용하여 커스텀 구간이 아닌 숫자들이 나오는 첫 인덱스인 5번째를 기점의 문자열에서 끝까지 잘라내고,
 
 `replace()` 를 이용하여 구분자만 “,”로 변환하였습니다.
 
 ### 3. 구분자 “,”를 기점으로 컬렉션 만들기
 
 ```kotlin
-val number = noneSeparatorNum?.split(",")
+var numbers: List<String>? = noneSeparatorNum?.split(",")
 ```
 
 `split()` 를 이용하여 구분자 “,”를 기점으로 컬렉션을 만들었습니다.
@@ -63,22 +62,25 @@ val number = noneSeparatorNum?.split(",")
 ### 4. 덧셈 계산기
 
 ```kotlin
-var result = 0
-if (number != null) {
-    for (i in number) {
-        result += i.toInt()
+if (numbers != null) {
+    for (number in numbers) {
+        if (number.toIntOrNull() != null) {
+            result += number.toInt()
+        }
     }
 }
 ```
 
 변수 result에 컬렉션 number가 null이 아닐때 for문을 돌려 덧셈이 되도록 하였습니다.
 
-i가 String이였기 때문에 `toInt()` 를 이용하여 수로 변환해주었습니다.
+`toIntOrNull()` 를 이용하여 null이 아닐 경우 즉, Int일때,
+
+number가 String이였기 때문에 `toInt()` 를 이용하여 수로 변환해주었습니다.
 
 ### 4. 예외 처리기
 
 ```kotlin
-if (result <= 0 || number == null || noneSeparatorNum.indexOf(",") != 1) {
+if (result <= 0 || number == null) {
     throw IllegalArgumentException()
 }
 ```
